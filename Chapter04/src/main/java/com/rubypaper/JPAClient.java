@@ -18,14 +18,9 @@ public class JPAClient {
 		try {
 			tx.begin();
 			
-			Board board=new Board();
-			board.setTitle("JPA 제목");
-			board.setWriter("관리자");
-			board.setContent("JPA 글 등록 잘 됨");
-			board.setCreateDate(new Date());
-			board.setCnt(0L);
+			Board board = em.find(Board.class, 1L);
+			board.setTitle("검색한 게시글의 제목수정");
 			
-			em.persist(board);
 			tx.commit();
 		}catch(Exception e) {
 			e.printStackTrace();
