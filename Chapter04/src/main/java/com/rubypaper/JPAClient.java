@@ -21,7 +21,7 @@ public class JPAClient {
 			Board board=new Board();
 			board.setTitle("JPA 제목");
 			board.setWriter("관리자");
-			board.setContent("JPA 글 등록 잘 되네요");
+			board.setContent("JPA 글 등록 잘 됨");
 			board.setCreateDate(new Date());
 			board.setCnt(0L);
 			
