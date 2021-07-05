@@ -6,21 +6,18 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.TableGenerator;
+import javax.persistence.SequenceGenerator;
 
 /**
  * Entity implementation class for Entity: Board
  *
  */
 @Entity
-@TableGenerator(name="BOARD_SEQ_GENERATOR",
-				table="ALL_SEQUENCES",
-				pkColumnValue="BOARD_SEQ",
-				initialValue=0,
-				allocationSize=1)
+@SequenceGenerator(name="BOARD_SEQ_GENERATOR",sequenceName="BOARD_SEQUENCE",
+					initialValue=1,allocationSize=1)
 public class Board  {
 	@Id
-	@GeneratedValue(strategy = GenerationType.TABLE,generator="BOARD_SEQ_GENERATOR")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE,generator="BOARD_SEQ_GENERATOR")
 	private Long seq;
 	private String title;
 	private String writer;
