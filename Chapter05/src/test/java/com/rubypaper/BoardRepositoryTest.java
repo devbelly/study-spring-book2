@@ -17,16 +17,22 @@ public class BoardRepositoryTest {
 	@Autowired
 	private BoardRepository boardRepo;
 	
+//	@Test
+//	public void testInsertBoard() {
+//		Board board = new Board();
+//		board.setCnt(0L);
+//		board.setContent("잘 등록되나요?");
+//		board.setCreateDate(new Date());
+//		board.setWriter("테스터");
+//		board.setTitle("첫 번째 게시글");
+//		
+//		boardRepo.save(board);
+//	}
+	
 	@Test
-	public void testInsertBoard() {
-		Board board = new Board();
-		board.setCnt(0L);
-		board.setContent("잘 등록되나요?");
-		board.setCreateDate(new Date());
-		board.setWriter("테스터");
-		board.setTitle("첫 번째 게시글");
-		
-		boardRepo.save(board);
+	public void testGetBoard() {
+		Board board = boardRepo.findById(1L).get();
+		System.out.println(board);
 	}
 
 }
