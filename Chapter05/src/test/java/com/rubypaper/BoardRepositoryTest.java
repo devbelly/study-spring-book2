@@ -29,10 +29,17 @@ public class BoardRepositoryTest {
 //		boardRepo.save(board);
 //	}
 	
+//	@Test
+//	public void testGetBoard() {
+//		Board board = boardRepo.findById(1L).get();
+//		System.out.println(board);
+//	}
+	
 	@Test
-	public void testGetBoard() {
-		Board board = boardRepo.findById(1L).get();
-		System.out.println(board);
+	public void testUpdateBoard() {
+		Board board=boardRepo.findById(1L).get();
+		
+		board.setTitle("제목을 수정했습니다");
+		boardRepo.save(board);
 	}
-
 }
