@@ -40,10 +40,18 @@ public class QueryMethodTest {
 //		}
 //	}
 	
+//	@Test
+//	public void testFindByContentContaining() {
+//		List<Board> boardList = boardRepo.findByContentContaining("17");
+//		for(Board board : boardList) {
+//			System.out.println(board);
+//		}
+//	}
+	
 	@Test
-	public void testFindByContentContaining() {
-		List<Board> boardList = boardRepo.findByContentContaining("17");
-		for(Board board : boardList) {
+	public void testFindByTitleContaingOrderBySeqDesc() {
+		List<Board> boardList = boardRepo.findByTitleContainingOrderBySeqDesc("17");
+		for(Board board:boardList) {
 			System.out.println(board);
 		}
 	}
