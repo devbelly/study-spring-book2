@@ -3,6 +3,7 @@ package com.rubypaper.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -25,6 +26,6 @@ public class Member {
 	private String name;
 	private String role;
 	
-	@OneToMany(mappedBy="member", fetch=FetchType.EAGER)
+	@OneToMany(mappedBy="member", fetch=FetchType.EAGER,cascade = CascadeType.ALL)
 	private List<Board> boardList =new ArrayList<Board>();
 }
