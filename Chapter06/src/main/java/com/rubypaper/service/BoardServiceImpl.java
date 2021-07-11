@@ -19,7 +19,9 @@ public class BoardServiceImpl implements BoardService {
 	public void insertBoard(Board board) {
 		boardRepo.save(board);
 	}
-	public Board getBoard(Board board) {return null;}
+	public Board getBoard(Board board) {
+		return boardRepo.findById(board.getSeq()).get();
+	}
 	public void updateBoard(Board board) {}
 	public void deleteBoard(Board board) {}
 }
