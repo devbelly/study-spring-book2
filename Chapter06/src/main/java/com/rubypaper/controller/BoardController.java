@@ -41,4 +41,6 @@ public class BoardController {
 		model.addAttribute("board",boardService.getBoard(board));
 		return "getBoard";
 	}
+	
+	
 }
