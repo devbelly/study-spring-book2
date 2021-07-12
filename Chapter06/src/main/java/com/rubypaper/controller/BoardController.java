@@ -18,6 +18,11 @@ public class BoardController {
 	@Autowired
 	private BoardService boardService;
 	
+	@GetMapping("/hello")
+	public void hello(Model model) {
+		model.addAttribute("greeting","hello thymeleaf");
+	}
+	
 	@RequestMapping("/getBoardList")
 	public String getBoardList(Model model,Board board) {
 		List<Board> boardList =boardService.getBoardList(board);
