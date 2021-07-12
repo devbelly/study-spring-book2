@@ -29,11 +29,13 @@ public class BoardController {
 	
 	@ModelAttribute("member")
 	public Member setMember() {
+		System.out.println("*********setMember()*******");
 		return new Member();
 	}
 	
 	@RequestMapping("/getBoardList")
 	public String getBoardList(@ModelAttribute("member") Member member,Model model,Board board) {
+		System.out.println("getBoardList");
 		if(member.getId()==null) {
 			return "redirect:login";
 		}
