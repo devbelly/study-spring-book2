@@ -45,18 +45,30 @@ public class BoardController {
 	}
 	
 	@GetMapping("/insertBoard")
-	public String insertBoardView() {
+	public String insertBoardView(@ModelAttribute("member") Member member,Board board) {
+
+		if(member.getId()==null) {
+			return "redirect:login";
+		}
 		return "insertBoard";
 	}
 	
 	@PostMapping("/insertBoard")
-	public String insertBoard(Board board) {
+	public String insertBoard(@ModelAttribute("member") Member member,Board board) {
+
+		if(member.getId()==null) {
+			return "redirect:login";
+		}
 		boardService.insertBoard(board);
 		return "redirect:getBoardList";
 	}
 	
 	@GetMapping("/getBoard")
-	public String getBoard(Board board,Model model) {
+	public String getBoard(@ModelAttribute("member") Member member,Board board,Model model) {
+
+		if(member.getId()==null) {
+			return "redirect:login";
+		}
 		model.addAttribute("board",boardService.getBoard(board));
 		return "getBoard";
 	}
