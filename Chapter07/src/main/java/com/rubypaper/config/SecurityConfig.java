@@ -1,5 +1,7 @@
 package com.rubypaper.config;
 
+import javax.sql.DataSource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -8,6 +10,9 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
+	
+	@Autowired
+	private DataSource dataSource;
 	
 	@Override
 	protected void configure(HttpSecurity security) throws Exception{
@@ -18,14 +23,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		
 		security.csrf().disable();
 		security.formLogin().loginPage("/login").defaultSuccessUrl("/loginSuccess",true);
-		security.exceptionHandling().accessDeniedPage("/accessDenided");
+		security.exceptionHandling().accessDeniedPage("/accessDenied");
 	}
 	
 	@Autowired
 	public void authenticate(AuthenticationManagerBuilder auth) throws Exception{
-		auth.inMemoryAuthentication().
-		withUser("manager").password("{noop}manager123").roles("MANAGER");
 		
-		auth.inMemoryAuthentication().withUser("admin").password("{noop}admin123").roles("ADMIN");
+		String query1 = "select id username, concat('{noop}',password) password,true enabled from member where id=?";
+				
+		
+		String query2 = "select id, role from member where id=?";
+		
+		auth.jdbcAuthentication().dataSource(dataSource).usersByUsernameQuery(query1).authoritiesByUsernameQuery(query2);
 	}
 }
